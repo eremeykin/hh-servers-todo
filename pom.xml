@@ -79,7 +79,7 @@
                             <value>${basedir}/src/main/resources</value>
                         </systemProperty>
                     </systemProperties>
-                    <mainClass>pete.eremeykin.todo.ExampleMain</mainClass>
+                    <mainClass>pete.eremeykin.todo.main.ExampleMain</mainClass>
                 </configuration>
             </plugin>
 
@@ -139,25 +139,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-jspc-maven-plugin</artifactId>
-                <version>9.4.14.v20181114</version>
-                <executions>
-                    <execution>
-                        <id>jspc</id>
-                        <goals>
-                            <goal>jspc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <includes>**/*.jspx, **/*.jsp</includes>
-                    <keepSources>false</keepSources>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

@@ -1,4 +1,4 @@
-package pete.eremeykin.todo;
+package pete.eremeykin.todo.main;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

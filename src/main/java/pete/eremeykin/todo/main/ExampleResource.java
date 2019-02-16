@@ -1,12 +1,10 @@
-package pete.eremeykin.todo;
+package pete.eremeykin.todo.main;
 
 import org.glassfish.jersey.server.mvc.Template;
 import org.glassfish.jersey.server.mvc.Viewable;
+import pete.eremeykin.todo.main.model.SampleModel;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,13 +37,4 @@ public class ExampleResource {
     return new Viewable("sample2", model);
   }
 
-  public static class SampleModel {
-    public String greeting;
-    public String name;
-
-    public SampleModel(String greeting, String name) {
-      this.greeting = greeting;
-      this.name = name;
-    }
-  }
 }

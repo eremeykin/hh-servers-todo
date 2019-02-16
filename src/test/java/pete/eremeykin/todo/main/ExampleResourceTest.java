@@ -1,4 +1,4 @@
-package pete.eremeykin.todo;
+package pete.eremeykin.todo.main;
 
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;

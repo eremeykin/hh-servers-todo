@@ -1,4 +1,4 @@
-package pete.eremeykin.todo.view;
+package pete.eremeykin.todo.main.view;
 
 
 import java.io.IOException;
