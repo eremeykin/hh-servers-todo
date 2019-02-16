@@ -1,6 +1,6 @@
 package pete.eremeykin.todo.main;
 
-import org.glassfish.jersey.server.mvc.mustache.MustacheMvcFeature;
+import org.glassfish.jersey.server.mvc.MvcFeature;
 import pete.eremeykin.todo.main.view.ThymeleafViewProcessor;
 import ru.hh.nab.starter.NabApplication;
 
@@ -13,11 +13,8 @@ public class ExampleMain {
           webAppContext.setResourceBase("src/main/resources");
         })
         .configureJersey(ExampleJerseyConfig.class)
-//        Uncomment this line for Thymeleaf
+        .registerResources(MvcFeature.class)
         .registerResources(ThymeleafViewProcessor.class)
-//        Uncomment the following lines for Mustache
-//        .registerProperty(MustacheMvcFeature.TEMPLATE_BASE_PATH, "templates")
-//        .registerResources(MustacheMvcFeature.class)
         .addAllowedPackages("pete.eremeykin")
         .bindToRoot()
         .build();

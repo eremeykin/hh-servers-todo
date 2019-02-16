@@ -6,8 +6,5 @@ import org.springframework.context.annotation.*;
 @Import(ExampleResource.class)
 public class ExampleJerseyConfig {
 
-  public ExampleJerseyConfig() {
-  }
-
 }
 

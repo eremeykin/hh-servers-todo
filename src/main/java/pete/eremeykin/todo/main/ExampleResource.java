@@ -6,8 +6,6 @@ import pete.eremeykin.todo.main.model.SampleModel;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.HashMap;
-import java.util.Map;
 
 @Path("/")
 public class ExampleResource {
@@ -20,13 +18,9 @@ public class ExampleResource {
 
   @GET
   @Path("/main")
-  @Template(name = "/main")
-  public Map<String, Object> data() {
-    System.out.println("In main resource");
-    Map<String, Object> context = new HashMap<>();
-    context.put("name", "Test name");
-    context.put("comment", "Test comment");
-    return context;
+  @Template(name = "sample2")
+  public Object data() {
+    return new SampleModel("Goooooood morning", "TWTWT");
   }
 
   @GET

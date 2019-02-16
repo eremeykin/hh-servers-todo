@@ -10,8 +10,4 @@ import ru.hh.nab.starter.NabProdConfig;
 @ComponentScan({ "pete.eremeykin" })
 public class ExampleConfig {
 
-  public ExampleConfig() {
-    System.out.println("In config :P");
-  }
-
 }
