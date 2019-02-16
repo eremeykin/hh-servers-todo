@@ -15,11 +15,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.server.mvc.Viewable;
 import org.glassfish.jersey.server.mvc.spi.TemplateProcessor;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import pete.eremeykin.todo.utils.ObjectUtils;
 
 @Provider
 public class ThymeleafViewProcessor implements TemplateProcessor<String> {
@@ -64,9 +67,8 @@ public class ThymeleafViewProcessor implements TemplateProcessor<String> {
   public void writeTo(String templateReference, Viewable viewable, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream out) throws IOException {
     out.flush();
     WebContext context = new WebContext(request, response, servletContext, request.getLocale());
-    Map<String, Object> variables = new HashMap<>();
-    variables.put("it", viewable.getModel());
+    Map<String, Object> variables = ObjectUtils.transformToMap(viewable.getModel());
     context.setVariables(variables);
-    templateEngine.process("index.html", context, response.getWriter());
+    templateEngine.process(templateReference, context, response.getWriter());
   }
 }

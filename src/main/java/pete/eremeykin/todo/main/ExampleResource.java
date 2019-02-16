@@ -17,18 +17,9 @@ public class ExampleResource {
   }
 
   @GET
-  @Path("/main")
-  @Template(name = "sample2")
-  public Object data() {
-    return new SampleModel("Goooooood morning", "TWTWT");
-  }
-
-  @GET
   @Path("/thym")
-  @Produces(MediaType.TEXT_HTML)
-  public Viewable sayHello2(@DefaultValue("my friends") @QueryParam("name") String name) {
-    SampleModel model = new SampleModel("Good morning", name);
-    return new Viewable("sample2", model);
+  @Template(name = "ind.old")
+  public Object data(@DefaultValue("world") @QueryParam("name") String name) {
+    return new SampleModel("Good morning", name);
   }
-
 }
