@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::head},~{::body})}">
+
+<head>
+</head>
+<body>
+<section class="todoapp">
+    <header class="header">
+        <h1 th:text="${greeting}">todo</h1>
+        <input class="new-todo" placeholder="What needs to be done?" autofocus>
+    </header>
+    <section style="display:none" class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list"></ul>
+        <footer class="footer">
+            <span class="todo-count"></span>
+            <ul class="filters">
+                <li>
+                    <a href="#/" class="selected">All</a>
+                </li>
+                <li>
+                    <a href="#/active">Active</a>
+                </li>
+                <li>
+                    <a href="#/completed">Completed</a>
+                </li>
+            </ul>
+            <button class="clear-completed">Clear completed</button>
+        </footer>
+    </section>
+</section>
+
+<script type="module" rel="script" src="../static/src/app.js"></script>
+<script type="module" rel="script" src="../static/src/helpers.js"></script>
+<script type="module" rel="script" src="../static/src/controller.js"></script>
+<script type="module" rel="script" src="../static/src/item.js"></script>
+<script type="module" rel="script" src="../static/src/store.js"></script>
+<script type="module" rel="script" src="../static/src/template.js"></script>
+<script type="module" rel="script" src="../static/src/view.js"></script>
+<script type="module" rel="script" src="../static/base.js"></script>
+
+</body>
+</html>
+
+

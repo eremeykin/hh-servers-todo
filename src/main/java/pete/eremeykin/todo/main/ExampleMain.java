@@ -6,6 +6,11 @@ import org.glassfish.jersey.server.mvc.MvcFeature;
 import pete.eremeykin.todo.main.view.ThymeleafViewProcessor;
 import ru.hh.nab.starter.NabApplication;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 public class ExampleMain {
 
   private static final String PATH_RESOURCES = "src/main/resources";
