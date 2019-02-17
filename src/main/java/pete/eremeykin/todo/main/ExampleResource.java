@@ -1,11 +1,9 @@
 package pete.eremeykin.todo.main;
 
 import org.glassfish.jersey.server.mvc.Template;
-import org.glassfish.jersey.server.mvc.Viewable;
 import pete.eremeykin.todo.main.model.SampleModel;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 @Path("/")
 public class ExampleResource {
@@ -17,9 +15,9 @@ public class ExampleResource {
   }
 
   @GET
-  @Path("/thym")
-  @Template(name = "ind.old")
-  public Object data(@DefaultValue("world") @QueryParam("name") String name) {
-    return new SampleModel("Good morning", name);
+  @Path("/index")
+  @Template(name = "index")
+  public Object index(@DefaultValue("world") @QueryParam("name") String name) {
+    return new SampleModel("ToDo", name);
   }
 }
