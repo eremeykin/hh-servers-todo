@@ -22,7 +22,13 @@ export default class Store {
 		 * @returns {ItemList} Current array of todos
 		 */
 		this.getLocalStorage = () => {
-			return liveTodos || JSON.parse(localStorage.getItem(name) || '[]');
+            let req = new XMLHttpRequest();
+            req.open('GET', "/todo/load", false);
+            req.send(null);
+            console.log(req.responseText);
+            if (req.status === 200) {
+                return JSON.parse(req.responseText);
+            }
 		};
 
 		/**
@@ -31,7 +37,13 @@ export default class Store {
 		 * @param {ItemList} todos Array of todos to write
 		 */
 		this.setLocalStorage = (todos) => {
-			localStorage.setItem(name, JSON.stringify(liveTodos = todos));
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/todo/save', true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            xhr.send(JSON.stringify(todos));
+            xhr.onloadend = function () {
+                console.log("save done")
+            };
 		};
 
 		if (callback) {
