@@ -16,7 +16,7 @@ public class ExampleMain {
   private static final String PARAM_RESOURCE_BASE = "resourceBase";
   private static final String MAPPING_ROOT = "/*";
   private static final String MAPPING_TODO = "/todo/*";
-  private static final String MAPPING_DISPATHCER = "/spring/*";
+  private static final String MAPPING_DISPATCHER = "/spring/*";
   private static final String NAME_PACKAGE;
   private static final String DOT = "\\.";
 
@@ -41,7 +41,7 @@ public class ExampleMain {
           ctx.register(WebMvcConfigure.class);
           DispatcherServlet dispatcherServlet = new DispatcherServlet(ctx);
           ServletHolder dsServletHolder = new ServletHolder(NAME_DISPATCHER_SERVLET, dispatcherServlet);
-          webAppContext.getServletHandler().addServletWithMapping(dsServletHolder, MAPPING_DISPATHCER);
+          webAppContext.getServletHandler().addServletWithMapping(dsServletHolder, MAPPING_DISPATCHER);
         })
         .configureJersey(ExampleJerseyConfig.class)
         .registerResources(MvcFeature.class)
