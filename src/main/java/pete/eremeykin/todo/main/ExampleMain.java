@@ -3,8 +3,18 @@ package pete.eremeykin.todo.main;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.mvc.MvcFeature;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import pete.eremeykin.todo.main.view.ThymeleafViewProcessor;
 import ru.hh.nab.starter.NabApplication;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class ExampleMain {
 
@@ -29,6 +39,13 @@ public class ExampleMain {
           ServletHolder defaultServlet = new ServletHolder(NAME_DEFAULT_SERVLET, new DefaultServlet());
           defaultServlet.setInitParameter(PARAM_RESOURCE_BASE, PATH_RESOURCES);
           webAppContext.getServletHandler().addServletWithMapping(defaultServlet, MAPPING_ROOT);
+
+          AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+          ctx.register(WebMvcConfigure.class);
+
+          DispatcherServlet ds = new DispatcherServlet(ctx);
+          ServletHolder dsServletHolder = new ServletHolder("dispatcher", ds);
+          webAppContext.getServletHandler().addServletWithMapping(dsServletHolder, "/spring/*");
         })
         .configureJersey(ExampleJerseyConfig.class)
         .registerResources(MvcFeature.class)
