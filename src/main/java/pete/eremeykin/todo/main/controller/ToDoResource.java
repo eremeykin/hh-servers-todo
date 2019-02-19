@@ -1,4 +1,7 @@
-package pete.eremeykin.todo.main;
+package pete.eremeykin.todo.main.controller;
+
+import org.glassfish.jersey.server.mvc.Template;
+import pete.eremeykin.todo.main.model.SampleModel;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -8,6 +11,7 @@ import javax.ws.rs.core.Response;
 public class ToDoResource {
 
   private String savedData = "[]";
+
 
   @POST
   @Path("/save")
@@ -22,7 +26,23 @@ public class ToDoResource {
   @Path("/load")
   @Produces(MediaType.APPLICATION_JSON)
   public Response loadTodos() {
-//    String data = "[{\"id\":1550492449892,\"title\":\"tESt\",\"completed\":false},{\"id\":1550492476165,\"title\":\"test2\",\"completed\":false},{\"id\":1550492504711,\"title\":\"test3\",\"completed\":false},{\"id\":1550492540689,\"title\":\"test4\",\"completed\":false},{\"id\":1550492600847,\"title\":\"test5\",\"completed\":false},{\"id\":1550492636250,\"title\":\"test6\",\"completed\":false},{\"id\":1550492677128,\"title\":\"test7\",\"completed\":false}]\n";
     return Response.status(200).entity(savedData).build();
   }
+
+
+  @GET
+  @Path("/index")
+  @Template(name = "index")
+  public Object index(@DefaultValue("world") @QueryParam("name") String name) {
+    return new SampleModel("ToDo", name);
+  }
+
+
+  @GET
+  @Path("/edit")
+  @Template(name = "edit")
+  public Object edit(@DefaultValue("world") @QueryParam("name") String name) {
+    return new SampleModel("ToDo", name);
+  }
+
 }
