@@ -16,7 +16,7 @@ public class AccountServiceImpl implements AccountService {
   private AccountRepository accountRepository;
 
   @Override
-  public List<Account> findByAccountUserName(String userName) {
+  public Account findByAccountUserName(String userName) {
     return accountRepository.findByAccountUserName(userName);
   }
 }

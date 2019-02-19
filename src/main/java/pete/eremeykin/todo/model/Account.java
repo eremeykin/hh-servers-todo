@@ -23,4 +23,28 @@ public class Account {
         ", accountPassword='" + accountPassword + '\'' +
         '}';
   }
+
+  public long getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(long accountId) {
+    this.accountId = accountId;
+  }
+
+  public String getAccountUserName() {
+    return accountUserName;
+  }
+
+  public void setAccountUserName(String accountUserName) {
+    this.accountUserName = accountUserName;
+  }
+
+  public String getAccountPassword() {
+    return accountPassword;
+  }
+
+  public void setAccountPassword(String accountPassword) {
+    this.accountPassword = accountPassword;
+  }
 }

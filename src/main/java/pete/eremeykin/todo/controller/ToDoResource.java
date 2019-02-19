@@ -49,8 +49,6 @@ public class ToDoResource {
   @Path("/index")
   @Template(name = "index")
   public Object index(@DefaultValue("world") @QueryParam("name") String name) {
-    System.out.println(taskService.findByUserId(1L).iterator().next());
-    System.out.println(accountService.findByAccountUserName("testUser").iterator().next());
     return new SampleModel("ToDo", name);
   }
 

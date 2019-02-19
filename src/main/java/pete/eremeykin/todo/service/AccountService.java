@@ -5,5 +5,5 @@ import pete.eremeykin.todo.model.Account;
 import java.util.List;
 
 public interface AccountService {
-  List<Account> findByAccountUserName(String userName);
+  Account findByAccountUserName(String userName);
 }
