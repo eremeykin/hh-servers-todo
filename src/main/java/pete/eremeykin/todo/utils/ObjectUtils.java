@@ -7,10 +7,11 @@ import java.util.Map;
 
 public class ObjectUtils {
 
-  public static Map<String, Object> transformToMap(Object object){
+  public static Map<String, Object> transformToMap(Object object) {
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> map =
-        mapper.convertValue(object, new TypeReference<Map<String, Object>>() {});
+        mapper.convertValue(object, new TypeReference<Map<String, Object>>() {
+        });
     return map;
   }
 }

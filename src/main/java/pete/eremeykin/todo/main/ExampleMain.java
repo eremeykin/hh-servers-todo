@@ -5,10 +5,8 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.mvc.MvcFeature;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
-import org.springframework.web.servlet.DispatcherServlet;
-import pete.eremeykin.todo.main.view.ThymeleafViewProcessor;
+import pete.eremeykin.todo.view.ThymeleafViewProcessor;
 import ru.hh.nab.starter.NabApplication;
 
 
@@ -17,7 +15,6 @@ public class ExampleMain {
 
   private static final String PATH_RESOURCES = "src/main/resources";
   private static final String NAME_DEFAULT_SERVLET = "default";
-  private static final String NAME_DISPATCHER_SERVLET = "dispatcher";
   private static final String NAME_SECURITY_FILTER = "springSecurityFilterChain";
   private static final String PARAM_RESOURCE_BASE = "resourceBase";
   private static final String MAPPING_ROOT = "/*";

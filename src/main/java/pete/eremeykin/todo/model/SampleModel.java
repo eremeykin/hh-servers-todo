@@ -1,4 +1,4 @@
-package pete.eremeykin.todo.main.model;
+package pete.eremeykin.todo.model;
 
 public class SampleModel {
 
