@@ -16,13 +16,13 @@ export default class Store {
          */
         let liveTodos;
 
-        this.getReq = () => {
-            // if (liveTodos)
-            //     return liveTodos;
+        this.getLocalStorage = () => {
+            if (liveTodos)
+                return liveTodos;
             let req = new XMLHttpRequest();
-            req.open('GET', "/todo/load", true);
+            req.open('GET', "/todo/load", false);
             req.send(null);
-            return req;
+            return JSON.parse(req.responseText);
         };
 
         /**
@@ -36,7 +36,7 @@ export default class Store {
             xhr.open('POST', '/todo/save', true);
             xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
             console.log(">>> " + JSON.stringify(todos));
-            xhr.send(JSON.stringify(todos));
+            xhr.send(JSON.stringify(liveTodos = todos));
             xhr.onloadend = function () {
                 if (callback) {
                     callback();
@@ -46,6 +46,7 @@ export default class Store {
         };
 
     }
+
 
     /**
      * Find items with properties matching those on query.
@@ -59,21 +60,17 @@ export default class Store {
      * })
      */
     find(query, callback) {
-        let req = this.getReq();
-        req.onloadend = () => {
-                const todos = JSON.parse(req.responseText);
-                console.log("<<< (find)" + JSON.stringify(todos));
-                let k;
-                callback(todos.filter(todo => {
-                    for (k in query) {
-                        if (query[k] !== todo[k]) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }));
+        const todos = this.getLocalStorage();
+        let k;
+
+        callback(todos.filter(todo => {
+            for (k in query) {
+                if (query[k] !== todo[k]) {
+                    return false;
+                }
             }
-        };
+            return true;
+        }));
     }
 
     /**
@@ -83,28 +80,24 @@ export default class Store {
      * @param {function()} [callback] Called when partialRecord is applied
      */
     update(update, callback) {
-        let req = this.getReq();
-        req.onloadend = () => {
-            const id = update.id;
-            const todos = JSON.parse(req.responseText);
-            console.log("<<< (update)" + JSON.stringify(todos));
-            let i = todos.length;
-            let k;
+        const id = update.id;
+        const todos = this.getLocalStorage();
+        let i = todos.length;
+        let k;
 
-            while (i--) {
-                if (todos[i].id === id) {
-                    for (k in update) {
-                        todos[i][k] = update[k];
-                    }
-                    break;
+        while (i--) {
+            if (todos[i].id === id) {
+                for (k in update) {
+                    todos[i][k] = update[k];
                 }
+                break;
             }
+        }
 
-            this.setLocalStorage(todos);
+        this.setLocalStorage(todos);
 
-            if (callback) {
-                callback();
-            }
+        if (callback) {
+            callback();
         }
     }
 
@@ -115,16 +108,12 @@ export default class Store {
      * @param {function()} [callback] Called when item is inserted
      */
     insert(item, callback) {
-        let req = this.getReq();
-        req.onloadend = () => {
-            const todos = JSON.parse(req.responseText);
-            console.log("<<< (insert)" + JSON.stringify(todos));
-            todos.push(item);
-            this.setLocalStorage(todos);
+        const todos = this.getLocalStorage();
+        todos.push(item);
+        this.setLocalStorage(todos);
 
-            if (callback) {
-                callback();
-            }
+        if (callback) {
+            callback();
         }
     }
 
@@ -135,25 +124,21 @@ export default class Store {
      * @param {function(ItemList)|function()} [callback] Called when records matching query are removed
      */
     remove(query, callback) {
-        let req = this.getReq();
-        req.onloadend = () => {
-            let k;
-            let todos = JSON.parse(req.responseText);
-            console.log("<<< (remove)" + JSON.stringify(todos));
-            todos = todos.filter(todo => {
-                for (k in query) {
-                    if (query[k] !== todo[k]) {
-                        return true;
-                    }
+        let k;
+
+        const todos = this.getLocalStorage().filter(todo => {
+            for (k in query) {
+                if (query[k] !== todo[k]) {
+                    return true;
                 }
-                return false;
-            });
-
-            this.setLocalStorage(todos);
-
-            if (callback) {
-                callback(todos);
             }
+            return false;
+        });
+
+        this.setLocalStorage(todos);
+
+        if (callback) {
+            callback(todos);
         }
     }
 
