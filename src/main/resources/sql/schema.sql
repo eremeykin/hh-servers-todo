@@ -8,5 +8,6 @@ CREATE TABLE task (
     taskId serial primary key,
     taskOrder int not null,
     taskText varchar(100) not null,
+    taskCompleted boolean not null,
     userId  int not null REFERENCES account(accountId)
 );
