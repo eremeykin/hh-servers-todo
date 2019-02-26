@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @ComponentScan("pete.eremeykin.todo.service")
 @EnableJpaRepositories("pete.eremeykin.todo.repository")
-public class SpringDataConfig {
+class SpringDataConfig {
 
   @Bean
   public DataSource dataSource() {

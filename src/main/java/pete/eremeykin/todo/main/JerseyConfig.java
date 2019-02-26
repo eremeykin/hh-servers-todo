@@ -5,7 +5,7 @@ import pete.eremeykin.todo.controller.ToDoResource;
 
 @Configuration
 @Import({ToDoResource.class})
-public class ExampleJerseyConfig {
+class JerseyConfig {
 
 }
 

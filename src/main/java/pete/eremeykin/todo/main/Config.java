@@ -8,6 +8,6 @@ import ru.hh.nab.starter.NabProdConfig;
 @Configuration
 @Import(NabProdConfig.class)
 @ComponentScan({ "pete.eremeykin" })
-public class ExampleConfig {
+class Config {
 
 }

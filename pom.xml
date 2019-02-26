@@ -107,7 +107,7 @@
                             <value>${basedir}/src/main/resources</value>
                         </systemProperty>
                     </systemProperties>
-                    <mainClass>pete.eremeykin.todo.main.ExampleMain</mainClass>
+                    <mainClass>pete.eremeykin.todo.main.Application</mainClass>
                 </configuration>
             </plugin>
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TaskServiceImpl implements TaskService {
+class SpringDataTaskService implements TaskService {
 
   @Autowired
   private TaskRepository taskRepository;

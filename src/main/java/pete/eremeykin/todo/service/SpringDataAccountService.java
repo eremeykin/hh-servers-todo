@@ -6,11 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import pete.eremeykin.todo.model.Account;
 import pete.eremeykin.todo.repository.AccountRepository;
 
-import java.util.List;
-
 @Service
 @Transactional
-public class AccountServiceImpl implements AccountService {
+class SpringDataAccountService implements AccountService {
 
   @Autowired
   private AccountRepository accountRepository;

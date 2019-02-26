@@ -25,7 +25,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import pete.eremeykin.todo.utils.ObjectUtils;
 
 @Provider
-public class ThymeleafViewProcessor implements TemplateProcessor<String> {
+public final class ThymeleafViewProcessor implements TemplateProcessor<String> {
 
   @Context
   ServletContext servletContext;
@@ -39,11 +39,11 @@ public class ThymeleafViewProcessor implements TemplateProcessor<String> {
   private TemplateEngine templateEngine;
 
   @PostConstruct
-  public void postConstruct() throws IOException {
+  public void postConstruct() {
     ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
     templateResolver.setPrefix("/templates/");
     templateResolver.setSuffix(".html");
-    templateResolver.setTemplateMode("HTML5");
+    templateResolver.setTemplateMode("HTML");
     templateResolver.setCacheTTLMs(3600000L);
 
     templateEngine = new TemplateEngine();

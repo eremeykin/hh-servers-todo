@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.util.Map;
 
-public class ObjectUtils {
+public final class ObjectUtils {
 
   public static Map<String, Object> transformToMap(Object object) {
     ObjectMapper mapper = new ObjectMapper();

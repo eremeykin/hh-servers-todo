@@ -7,14 +7,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pete.eremeykin.todo.model.Account;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 
 @Service
-public class AccountDetailsServiceImpl implements UserDetailsService {
+@Transactional
+class SpringDataAccountDetailsService implements UserDetailsService {
 
 
   @Autowired

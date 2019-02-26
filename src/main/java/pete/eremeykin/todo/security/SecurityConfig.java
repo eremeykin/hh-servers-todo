@@ -10,17 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pete.eremeykin.todo.service.AccountDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private static final String USER_NAME = "user";
-  private static final String USER_PASSWORD = "password";
-  private static final String USER_ROLE = "USER";
   private static final String MAPPING_APP = "/todo";
   private static final String MAPPING_INDEX = "/index";
   private static final String MAPPING_EDIT = "/edit";
@@ -31,12 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private static final String LOGOUT_PROCESSING_URL = MAPPING_APP + "/logout";
 
   @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+  public void configureGlobal(AuthenticationManagerBuilder auth){
     auth.authenticationProvider(authenticationProvider());
   }
 
   @Autowired
-  private AccountDetailsServiceImpl accountDetailsService;
+  private UserDetailsService accountDetailsService;
 
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {

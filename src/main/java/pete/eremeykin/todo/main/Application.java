@@ -11,7 +11,7 @@ import ru.hh.nab.starter.NabApplication;
 
 
 
-public class ExampleMain {
+public final class Application {
 
   private static final String PATH_RESOURCES = "src/main/resources";
   private static final String NAME_DEFAULT_SERVLET = "default";
@@ -23,7 +23,7 @@ public class ExampleMain {
   private static final String DOT = "\\.";
 
   static {
-    String fullPackageName = ExampleMain.class.getPackage().getName();
+    String fullPackageName = Application.class.getPackage().getName();
     String[] tokens = fullPackageName.split(DOT);
     NAME_PACKAGE = tokens[0] + "." + tokens[1];
   }
@@ -44,12 +44,12 @@ public class ExampleMain {
           FilterHolder filterHolder = new FilterHolder(new DelegatingFilterProxy(NAME_SECURITY_FILTER));
           webAppContext.getServletHandler().addFilterWithMapping(filterHolder, MAPPING_ROOT, 0);
         })
-        .configureJersey(ExampleJerseyConfig.class)
+        .configureJersey(JerseyConfig.class)
         .registerResources(MvcFeature.class)
         .registerResources(ThymeleafViewProcessor.class)
         .addAllowedPackages(NAME_PACKAGE)
         .bindTo(MAPPING_APP+ "/*")
         .build();
-    nab.run(ExampleConfig.class);
+    nab.run(Config.class);
   }
 }
