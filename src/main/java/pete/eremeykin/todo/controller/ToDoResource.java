@@ -21,6 +21,14 @@ import java.util.List;
 
 @Path("/")
 public class ToDoResource {
+  /*ToDo Add separate method
+   * for each of following actions:
+   *     find
+   *     update
+   *     insert
+   *     remove
+   *     count
+   * */
 
   @Autowired
   private TaskService taskService;
