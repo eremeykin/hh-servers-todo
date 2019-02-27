@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ru.hh.public-pom</groupId>
+        <artifactId>public-pom</artifactId>
+        <version>1.33</version>
+    </parent>
+
+    <groupId>ru.hh.nab</groupId>
+    <artifactId>nuts-and-bolts-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>4.12.4</version>
+
+    <name>nuts'n'bolts parent module</name>
+
+    <modules>
+        <module>nab-common</module>
+        <module>nab-starter</module>
+        <module>nab-data-source</module>
+        <module>nab-example</module>
+        <module>nab-hibernate</module>
+        <module>nab-testbase</module>
+        <module>nab-tests</module>
+        <module>nab-logging</module>
+    </modules>
+
+    <properties>
+        <spring.version>5.1.4.RELEASE</spring.version>
+        <jersey.version>2.27</jersey.version>
+        <hibernate.version>5.2.10.Final</hibernate.version>
+        <postgres.jdbc.version>42.2.5</postgres.jdbc.version>
+        <hhmetrics.version>0.16</hhmetrics.version>
+        <jetty.version>9.4.14.v20181114</jetty.version>
+        <jackson.version>2.9.8</jackson.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <settingsDir>${basedir}/src/etc/nab-example</settingsDir>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>2.23.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <release>${java.version}</release>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>codecoverage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>@{argLine}</argLine>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>ru/hh/**/*Test.class</exclude>
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>hh-public</id>
+            <name>hh public releases repository</name>
+            <url>http://m2.hh.ru/content/repositories/public-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>public-jboss</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss</url>
+        </repository>
+        <repository>
+            <id>dev-java-net-glassfish-m2</id>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:git@github.com:hhru/nuts-and-bolts.git</connection>
+        <developerConnection>scm:git:git@github.com:hhru/nuts-and-bolts.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+</project>

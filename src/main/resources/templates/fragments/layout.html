@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout (head, template)">
+<head>
+    <meta charset="utf-8">
+    <title>ToDo</title>
+
+    <th:block th:include="${head}"/>
+
+    <link rel="stylesheet" href="../static/base.css">
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+<body>
+<th:block th:include="${template}"/>
+<span th:replace="~{fragments/footer :: footer}"></span>
+</body>
+</html>
